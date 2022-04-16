@@ -2,6 +2,8 @@ package gaozhi.online.ugui.core.activity.widget;
 
 import gaozhi.online.ugui.core.activity.Context;
 
+import java.awt.*;
+
 /**
  * @author LiFucheng
  * @version 1.0
@@ -11,12 +13,38 @@ import gaozhi.online.ugui.core.activity.Context;
 public abstract class BaseCard<T> extends UPanel {
     private final String key;
     private final Context context;
+    private final GridLayout gridLayout;
+
     public BaseCard(String key, Context context, T data) {
         this.key = key;
-        this.context =context;
+        this.context = context;
+        gridLayout = new GridLayout();
+        setLayout(gridLayout);
         initParam(data);
         initUI();
         doBusiness();
+    }
+
+    public void setRootGridLayout(final int rows, final int cols) {
+        gridLayout.setRows(rows);
+        gridLayout.setColumns(cols);
+        removeAll();
+        int size = rows * cols;
+        while (size-- > 0) {
+            add(new UPanel());
+        }
+    }
+
+    public void setVGap(int gap) {
+        gridLayout.setVgap(gap);
+    }
+
+    public void setHGap(int gap) {
+        gridLayout.setHgap(gap);
+    }
+
+    public UPanel getChildPanel(int row, int column) {
+        return (UPanel) getComponent((row - 1) * gridLayout.getColumns() + column - 1);
     }
 
     public abstract void initParam(T data);
