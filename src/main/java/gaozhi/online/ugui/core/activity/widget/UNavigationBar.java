@@ -1,6 +1,7 @@
 package gaozhi.online.ugui.core.activity.widget;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,10 +31,6 @@ public class UNavigationBar extends UPanel implements ActionListener {
 
     public UNavigationBar(Orientation orientation) {
         this.orientation = orientation;
-        navigationPanelGridLayout.setRows(1);
-        if (orientation == Orientation.VERTICAL) {
-            navigationPanelGridLayout.setColumns(1);
-        }
         setLayout(navigationPanelGridLayout);
         setBackground(Color.WHITE);
     }
@@ -41,8 +38,10 @@ public class UNavigationBar extends UPanel implements ActionListener {
     public void setItems(String[] items) {
         removeAll();
         if (orientation == Orientation.VERTICAL) {
+            navigationPanelGridLayout.setColumns(1);
             navigationPanelGridLayout.setRows(items.length);
         } else {
+            navigationPanelGridLayout.setRows(1);
             navigationPanelGridLayout.setColumns(items.length);
         }
         for (int i = 0; i < items.length; i++) {
@@ -50,6 +49,7 @@ public class UNavigationBar extends UPanel implements ActionListener {
             item.setHorizontalAlignment(JLabel.CENTER);
             item.setVerticalAlignment(JLabel.CENTER);
             item.setForeground(unSelectedColor);
+            item.setBorder(new EmptyBorder(10,10,10,10));
             item.setActionListener(this);
             add(item);
         }
@@ -80,6 +80,7 @@ public class UNavigationBar extends UPanel implements ActionListener {
     public void setSelected(int selected) {
         this.selected = selected;
         UItemView itemView = updateColor();
+
         actionPerformed(new ActionEvent(itemView, itemView.getIndex(), null));
     }
 

@@ -7,6 +7,8 @@ import gaozhi.online.ugui.core.resource.Resources;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.SubstanceSkin;
 
+import java.awt.*;
+
 /**
  * @author LiFucheng
  * @version 1.0
@@ -21,12 +23,7 @@ public class Application extends Context {
     }
 
     public Application(Resources resources) {
-        this(resources, FontClass.FontExample.SONG16);
-    }
-
-    public Application(Resources resources, FontClass.FontExample font) {
         super(resources);
-        FontClass.loadIndyFont(font);
     }
 
     public void configSkin(SubstanceSkin substanceSkin) {

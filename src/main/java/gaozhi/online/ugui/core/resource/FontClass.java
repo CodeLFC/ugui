@@ -24,7 +24,7 @@ public class FontClass {
         }
     }
 
-    public static void loadIndyFont(FontExample font) {
+    public static void loadIndyFont(FontExample font,Color foreground) {
 
         UIManager.put("CheckBox.font", font.getFont());
         UIManager.put("Tree.font",  font.getFont());
@@ -65,5 +65,46 @@ public class FontClass {
         UIManager.put("PopupMenu.font",  font.getFont());
         UIManager.put("TitledBorder.font",  font.getFont());
         UIManager.put("ComboBox.font",  font.getFont());
+
+        //    foreground
+        UIManager.put("CheckBox.foreground",foreground);
+        UIManager.put("Tree.foreground", foreground);
+        UIManager.put("Viewport.foreground", foreground);
+        UIManager.put("ProgressBar.foreground",  foreground);
+        UIManager.put("RadioButtonMenuItem.foreground",foreground);
+        UIManager.put("FormattedTextField.foreground",  foreground);
+        UIManager.put("ToolBar.foreground",  foreground);
+        UIManager.put("ColorChooser.foreground", foreground);
+        UIManager.put("ToggleButton.foreground",  foreground);
+        UIManager.put("Panel.foreground",  foreground);
+        UIManager.put("TextArea.foreground", foreground);
+        UIManager.put("Menu.foreground",  foreground);
+        UIManager.put("RadioButtonMenuItem.foreground",  foreground);
+        UIManager.put("Spinner.foreground", foreground);
+        UIManager.put("Menu.foreground", foreground);
+        UIManager.put("CheckBoxMenuItem.foreground", foreground);
+        UIManager.put("TableHeader.foreground", foreground);
+        UIManager.put("TextField.foreground", foreground);
+        UIManager.put("OptionPane.foreground",  foreground);
+        UIManager.put("MenuBar.foreground", foreground);
+        UIManager.put("Button.foreground",  foreground);
+        UIManager.put("Label.foreground",  foreground);
+        UIManager.put("PasswordField.foreground",  foreground);
+        UIManager.put("InternalFrame.foreground", foreground);
+        UIManager.put("OptionPane.foreground",  foreground);
+        UIManager.put("ScrollPane.foreground",  foreground);
+        UIManager.put("MenuItem.foreground",  foreground);
+        UIManager.put("ToolTip.foreground", foreground);
+        UIManager.put("List.foreground",  foreground);
+        UIManager.put("OptionPane.foreground",  foreground);
+        UIManager.put("EditorPane.foreground", foreground);
+        UIManager.put("Table.foreground",  foreground);
+        UIManager.put("TabbedPane.foreground", foreground);
+        UIManager.put("RadioButton.foreground",  foreground);
+        UIManager.put("CheckBoxMenuItem.foreground",  foreground);
+        UIManager.put("TextPane.foreground",  foreground);
+        UIManager.put("PopupMenu.foreground",  foreground);
+        UIManager.put("TitledBorder.foreground",  foreground);
+        UIManager.put("ComboBox.foreground",  foreground);
     }
 }
