@@ -17,19 +17,38 @@ public class UNavigationBar extends UPanel implements ActionListener {
     private Color unSelectedColor = Color.BLACK;
     private int selected;
     private UItemSelectedListener uItemSelectedListener;
+    private Orientation orientation;
+
+    public enum Orientation {
+        HORIZON,
+        VERTICAL;
+    }
 
     public UNavigationBar() {
+        this(Orientation.HORIZON);
+    }
+
+    public UNavigationBar(Orientation orientation) {
+        this.orientation = orientation;
         navigationPanelGridLayout.setRows(1);
+        if (orientation == Orientation.VERTICAL) {
+            navigationPanelGridLayout.setColumns(1);
+        }
         setLayout(navigationPanelGridLayout);
         setBackground(Color.WHITE);
     }
 
     public void setItems(String[] items) {
         removeAll();
-        navigationPanelGridLayout.setColumns(items.length);
+        if (orientation == Orientation.VERTICAL) {
+            navigationPanelGridLayout.setRows(items.length);
+        } else {
+            navigationPanelGridLayout.setColumns(items.length);
+        }
         for (int i = 0; i < items.length; i++) {
             UItemView item = new UItemView(i, items[i]);
             item.setHorizontalAlignment(JLabel.CENTER);
+            item.setVerticalAlignment(JLabel.CENTER);
             item.setForeground(unSelectedColor);
             item.setActionListener(this);
             add(item);
