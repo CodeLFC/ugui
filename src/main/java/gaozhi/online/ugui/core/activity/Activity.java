@@ -119,7 +119,9 @@ public abstract class Activity extends JFrame implements ActionListener, Runnabl
     public UActivityTitle getTitleView() {
         return titleView;
     }
-
+    public URoundRectPanel getRootPanel(){
+        return contentPanel;
+    }
     @Override
     public Container getContentPane() {
         return centerPanel;
