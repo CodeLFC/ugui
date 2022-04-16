@@ -38,8 +38,4 @@ public class Application extends Context {
             SubstanceLookAndFeel.setSkin(substanceSkin);
         });
     }
-
-    public static void main(String[] args) {
-
-    }
 }
