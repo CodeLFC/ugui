@@ -1,0 +1,3 @@
+#界面美化依赖包，通过以下命令安装到maven库中
+mvn install:install-file -DgroupId=org.pushingpixels.substance -DartifactId=api -Dversion=1.0 -Dpackaging=jar -Dfile=substance.jar
+mvn install:install-file -DgroupId=org.pushingpixels.trident -DartifactId=api -Dversion=1.0 -Dpackaging=jar -Dfile=trident.jar
