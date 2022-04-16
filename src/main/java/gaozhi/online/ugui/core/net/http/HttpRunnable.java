@@ -1,8 +1,8 @@
 package gaozhi.online.ugui.core.net.http;
 
 
-import gaozhi.online.uim.core.asynchronization.Handler;
-import gaozhi.online.uim.core.net.Result;
+import gaozhi.online.ugui.core.asynchronization.Handler;
+import gaozhi.online.ugui.core.net.Result;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

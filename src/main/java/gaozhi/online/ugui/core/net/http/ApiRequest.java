@@ -1,7 +1,7 @@
 package gaozhi.online.ugui.core.net.http;
 
 import com.google.gson.Gson;
-import gaozhi.online.uim.core.net.Result;
+import gaozhi.online.ugui.core.net.Result;
 
 import java.util.Map;
 
