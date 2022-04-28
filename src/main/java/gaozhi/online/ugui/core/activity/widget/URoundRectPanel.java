@@ -10,14 +10,8 @@ import java.awt.*;
  */
 public class URoundRectPanel extends UPanel {
 
-    private int arc = 10;
-    private Color startColor = Color.WHITE;
-    private Color endColor = new Color(149, 193, 219);
-    private Dimension activitySize = new Dimension(100,100);
-
-    public URoundRectPanel() {
-        setBackground(new Color(0,0,0,0));
-    }
+    private int arc = 20;
+    private Dimension activitySize = new Dimension(100, 100);
 
     public int getArc() {
         return arc;
@@ -25,22 +19,6 @@ public class URoundRectPanel extends UPanel {
 
     public void setArc(int arc) {
         this.arc = arc;
-    }
-
-    public Color getStartColor() {
-        return startColor;
-    }
-
-    public void setStartColor(Color startColor) {
-        this.startColor = startColor;
-    }
-
-    public Color getEndColor() {
-        return endColor;
-    }
-
-    public void setEndColor(Color endColor) {
-        this.endColor = endColor;
     }
 
     public Dimension getActivitySize() {
@@ -53,9 +31,10 @@ public class URoundRectPanel extends UPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        ((Graphics2D) g).setPaint(new GradientPaint(0, 0, startColor, 0, activitySize.height, endColor));
-        g.fillRoundRect(0, 0, activitySize.width, activitySize.height, arc, arc);
-       // System.out.println("重绘制："+activitySize.toString());
+        Graphics2D graphics2D = ((Graphics2D) g.create());
+        graphics2D.fillRoundRect(0, 0, activitySize.width, activitySize.height, arc, arc);
+        graphics2D.dispose();
+        // System.out.println("重绘制："+activitySize.toString());
         super.paintComponent(g);
     }
 

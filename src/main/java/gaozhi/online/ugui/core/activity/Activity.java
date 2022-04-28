@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * @description: TODO 基础窗口
  * @date 2022/1/25 13:30
  */
-public abstract class Activity extends JFrame implements ActionListener, Runnable {
+public abstract class Activity extends JFrame implements ActionListener {
 
     public static final int FULL_SCREEN = -1;
     //标题中的图标大小
@@ -80,11 +80,11 @@ public abstract class Activity extends JFrame implements ActionListener, Runnabl
         // 去掉java自带边框
         setUndecorated(true);
         //背景透明
-        setOpacity(0.98f);
+        //setOpacity(0.98f);
 
         //设置默认大小
         Dimension screenSize = screenSize();
-        setSize(screenSize.width * 4 / 9, screenSize.height * 4 / 9);
+        setSize(screenSize.width /3, screenSize.height/3);
         //设置窗口居中
         setLocationRelativeTo(null);
         //监听大小变化
@@ -103,7 +103,7 @@ public abstract class Activity extends JFrame implements ActionListener, Runnabl
         initParam(this.intent);
         initUI();
         doBusiness();
-
+        setBackground(new Color(255, 255, 255, 0));
     }
 
     public void setTitleView(UActivityTitle title) {
@@ -115,13 +115,17 @@ public abstract class Activity extends JFrame implements ActionListener, Runnabl
         titleView.addMouseListener(draggedResizeListener);
         titleView.addMouseMotionListener(draggedResizeListener);
     }
-
+    public void removeTitleView(){
+        super.getContentPane().remove(titleView);
+    }
     public UActivityTitle getTitleView() {
         return titleView;
     }
-    public URoundRectPanel getRootPanel(){
+
+    public URoundRectPanel getRootPanel() {
         return contentPanel;
     }
+
     @Override
     public Container getContentPane() {
         return centerPanel;
@@ -131,29 +135,36 @@ public abstract class Activity extends JFrame implements ActionListener, Runnabl
     public void setIconImage(Image image) {
         super.setIconImage(image);
         image = ImageUtil.getScaleImage(image, TITLE_ICON_SIZE);
-        titleView.getImageIcon().setImage(image);
+        if (titleView != null)
+            titleView.getImageIcon().setImage(image);
     }
 
     @Override
     public Image getIconImage() {
+        if (titleView == null) return null;
         return titleView.getImageIcon().getImage();
     }
 
     @Override
     public void setTitle(String title) {
         super.setTitle(title);
-        titleView.getLabelTitle().setText(title);
+        if (titleView != null)
+            titleView.getLabelTitle().setText(title);
     }
 
     @Override
     public String getTitle() {
+        if (titleView == null) {
+            return null;
+        }
         return titleView.getLabelTitle().getText();
     }
 
     @Override
     public void setResizable(boolean resizable) {
         super.setResizable(resizable);
-        titleView.setResizable(resizable);
+        if (titleView != null)
+            titleView.setResizable(resizable);
     }
 
     public abstract void initParam(Intent intent);
@@ -276,7 +287,7 @@ public abstract class Activity extends JFrame implements ActionListener, Runnabl
 
     public void startTwinkle(long period) {
         twinkle = true;
-        twinkleTimer = new TaskExecutor().executeTimerTask(this, period);
+        twinkleTimer = new TaskExecutor().executeTimerTask(this::twinkle, period);
     }
 
     public boolean isTwinkle() {
@@ -290,8 +301,8 @@ public abstract class Activity extends JFrame implements ActionListener, Runnabl
         twinkle = false;
     }
 
-    @Override
-    public void run() {
+
+    private void twinkle() {
         Image head = getTitleView().getImageIcon().getImage();
         twinkleImage = !twinkleImage;
         super.setIconImage(twinkleImage ? twinkleLogo : head);

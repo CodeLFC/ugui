@@ -14,16 +14,16 @@
     </properties>
     <dependencies>
         <!--美化-->
-        <dependency>
-            <groupId>org.pushingpixels.substance</groupId>
-            <artifactId>api</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.pushingpixels.trident</groupId>
-            <artifactId>api</artifactId>
-            <version>1.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.pushingpixels.substance</groupId>-->
+<!--            <artifactId>api</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.pushingpixels.trident</groupId>-->
+<!--            <artifactId>api</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--        </dependency>-->
         <!--++++++++++++++++++++++++++++GSON依赖++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
         <dependency>
             <groupId>com.google.code.gson</groupId>

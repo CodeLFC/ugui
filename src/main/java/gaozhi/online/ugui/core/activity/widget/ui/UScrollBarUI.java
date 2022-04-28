@@ -1,5 +1,6 @@
 package gaozhi.online.ugui.core.activity.widget.ui;
 
+
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
@@ -11,28 +12,11 @@ import java.awt.*;
  * @date 2022/3/17 9:39
  */
 public class UScrollBarUI extends BasicScrollBarUI {
+
     private static final int WIDTH = 6;
 
     @Override
     protected void configureScrollBarColors() {
-
-        // 把手
-
-        // thumbColor = Color.GRAY;
-
-        // thumbHighlightColor = Color.BLUE;
-
-        // thumbDarkShadowColor = Color.BLACK;
-
-        // thumbLightShadowColor = Color.YELLOW;
-
-        // 滑道
-
-        trackColor = Color.PINK;
-
-        setThumbBounds(0, 0, 1, 10);
-
-        // trackHighlightColor = Color.GREEN;
 
     }
 
@@ -44,28 +28,25 @@ public class UScrollBarUI extends BasicScrollBarUI {
     public Dimension getPreferredSize(JComponent c) {
 
         // TODO Auto-generated method stub
-
+        trackColor = c.getBackground();
+        setThumbBounds(0, 0, 1, 10);
         c.setPreferredSize(new Dimension(WIDTH, 0));
-
         return super.getPreferredSize(c);
 
     }
 
 
     // 重绘滑块的滑动区域背景
-
+    @Override
     public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
 
         Graphics2D g2 = (Graphics2D) g;
         //半透明
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
-
                 0.2f));
-
         GradientPaint gp = null;
-
         //判断滚动条是垂直的 还是水平的
-        Color color = Color.GRAY;
+        Color color = c.getBackground();
         if (this.scrollbar.getOrientation() == JScrollBar.VERTICAL) {
 
             //设置画笔
@@ -117,7 +98,7 @@ public class UScrollBarUI extends BasicScrollBarUI {
 
         // 设置把手颜色
 
-        g.setColor(Color.WHITE);
+        g.setColor(c.getForeground());
 
         // 画一个圆角矩形
 

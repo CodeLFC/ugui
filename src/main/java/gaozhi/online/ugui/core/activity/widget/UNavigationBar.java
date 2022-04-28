@@ -14,11 +14,11 @@ import java.awt.event.ActionListener;
  */
 public class UNavigationBar extends UPanel implements ActionListener {
     private final GridLayout navigationPanelGridLayout = new GridLayout();
-    private Color selectedColor = Color.RED;
-    private Color unSelectedColor = Color.BLACK;
     private int selected;
     private UItemSelectedListener uItemSelectedListener;
     private Orientation orientation;
+    private Color itemSelectedColor = Color.BLACK;
+    private Color itemUnSelectedColor = Color.GRAY;
 
     public enum Orientation {
         HORIZON,
@@ -48,29 +48,10 @@ public class UNavigationBar extends UPanel implements ActionListener {
             UItemView item = new UItemView(i, items[i]);
             item.setHorizontalAlignment(JLabel.CENTER);
             item.setVerticalAlignment(JLabel.CENTER);
-            item.setForeground(unSelectedColor);
-            item.setBorder(new EmptyBorder(10,10,10,10));
+            item.setBorder(new EmptyBorder(10, 10, 10, 10));
             item.setActionListener(this);
             add(item);
         }
-    }
-
-    public Color getSelectedColor() {
-        return selectedColor;
-    }
-
-    public void setSelectedColor(Color selectedColor) {
-        this.selectedColor = selectedColor;
-        updateColor();
-    }
-
-    public Color getUnSelectedColor() {
-        return unSelectedColor;
-    }
-
-    public void setUnSelectedColor(Color unSelectedColor) {
-        this.unSelectedColor = unSelectedColor;
-        updateColor();
     }
 
     public int getSelected() {
@@ -82,6 +63,24 @@ public class UNavigationBar extends UPanel implements ActionListener {
         UItemView itemView = updateColor();
 
         actionPerformed(new ActionEvent(itemView, itemView.getIndex(), null));
+    }
+
+    public Color getItemSelectedColor() {
+        return itemSelectedColor;
+    }
+
+    public void setItemSelectedColor(Color itemSelectedColor) {
+        this.itemSelectedColor = itemSelectedColor;
+        updateColor();
+    }
+
+    public Color getItemUnSelectedColor() {
+        return itemUnSelectedColor;
+    }
+
+    public void setItemUnSelectedColor(Color itemUnSelectedColor) {
+        this.itemUnSelectedColor = itemUnSelectedColor;
+        updateColor();
     }
 
     public UItemSelectedListener getuItemSelectedListener() {
@@ -118,9 +117,9 @@ public class UNavigationBar extends UPanel implements ActionListener {
         for (Component component : getComponents()) {
             if (component instanceof UItemView) {
                 if (((UItemView) component).index != selected) {
-                    component.setForeground(unSelectedColor);
+                    component.setForeground(itemUnSelectedColor);
                 } else {
-                    component.setForeground(selectedColor);
+                    component.setForeground(itemSelectedColor);
                     selectedView = (UItemView) component;
                 }
             }

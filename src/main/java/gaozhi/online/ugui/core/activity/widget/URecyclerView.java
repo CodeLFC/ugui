@@ -36,10 +36,12 @@ public class URecyclerView<T> extends UPanel implements MouseWheelListener {
         centerList.setOpaque(false);
 
         centerPanelScroll = new JScrollPane(centerList);
-        centerPanelScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        centerPanelScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         centerPanelScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         centerPanelScroll.getHorizontalScrollBar().setUI(new UScrollBarUI());
+        centerPanelScroll.getHorizontalScrollBar().setOpaque(false);
         centerPanelScroll.getVerticalScrollBar().setUI(new UScrollBarUI());
+        centerPanelScroll.getVerticalScrollBar().setOpaque(false);
         centerPanelScroll.setBorder(new EmptyBorder(0,0,0,0));
         centerPanelScroll.setOpaque(false);
         centerPanelScroll.getViewport().setOpaque(false);
