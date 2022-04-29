@@ -16,7 +16,7 @@ import java.awt.event.FocusEvent;
 public class UTextField extends JTextField {
     private final BasicRoundRectUI basicRoundRectUI = new BasicRoundRectUI(this);
     private final ReminderFocusAdapter reminderFocusAdapter = new ReminderFocusAdapter(this, null);
-
+    private Color hintColor = Color.LIGHT_GRAY;
     public UTextField() {
         super("");
         addFocusListener(reminderFocusAdapter);
@@ -27,6 +27,14 @@ public class UTextField extends JTextField {
 
     public void setHint(String hint) {
         reminderFocusAdapter.setReminder(hint);
+    }
+
+    public Color getHintColor() {
+        return hintColor;
+    }
+
+    public void setHintColor(Color hintColor) {
+        this.hintColor = hintColor;
     }
 
     public String getUText() {
@@ -50,13 +58,13 @@ public class UTextField extends JTextField {
      * @date 3/14/2022 10:04 AM
      */
     private static class ReminderFocusAdapter extends FocusAdapter {  //JTextField提示文字通用方法
-        private final JTextField txt;
+        private final UTextField txt;
         private String reminder;
         private final Color foreground;
         private boolean isHintState;
 
         //初始化
-        public ReminderFocusAdapter(JTextField txt_, String reminderString_) {
+        public ReminderFocusAdapter(UTextField txt_, String reminderString_) {
             // TODO Auto-generated constructor stub
             txt = txt_;
             reminder = reminderString_;
@@ -80,7 +88,7 @@ public class UTextField extends JTextField {
         public void focusLost(FocusEvent e) {
             String tempString = txt.getText();
             if (tempString.equals("")) {
-                txt.setForeground(Color.GRAY);
+                txt.setForeground(txt.getHintColor());
                 txt.setText(reminder);
                 isHintState = true;
             }
